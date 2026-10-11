@@ -1,7 +1,7 @@
 # DOORS-Ransom-script
 A python file that uses pygame and pyinstaller to create a replica of the Ransom popup in the DOORS Archives update.
 
-**Run this using:**
+## How to run
 
 _python ransom.py_
 
@@ -11,7 +11,8 @@ _python3 ransom.py_
 
 But if that doesn't work replace _ransom.py_ with the full path towards the _ransom.py_ file.
 
-**To be able to run this file you will need pygame. If you don't have pygame you need to run:**
+## Libraries
+To use this you will need pygame:
 
 _pip install pygame_
 
@@ -19,7 +20,7 @@ or
 
 _python -m pip install pygame_
 
-**And to turn it into an exe you will need to install pyinstaller:**
+## Making it into a Windows Executable
 
 _pip install pyinstaller_
 
