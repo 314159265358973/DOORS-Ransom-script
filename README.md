@@ -34,8 +34,8 @@ _pyinstaller main.spec_
 
 To make all of this easier for yourself I highly recommend opening a terminal window within the folder that all of these files are located.
 
-Feel free to delete this file.
-
 ## Credits
 
 **Made by Pandiwuwen**
+
+Feel free to delete this file.
