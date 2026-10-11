@@ -36,4 +36,6 @@ To make all of this easier for yourself I highly recommend opening a terminal wi
 
 Feel free to delete this file.
 
+## Credits
+
 **Made by Pandiwuwen**
