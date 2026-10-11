@@ -9,6 +9,7 @@ a = Analysis(
     datas=[
         ('icon.webp', '.'),  # icon
         ('Ransom.png', '.'),  # ransom image
+        ('Ransom theme.wav', '.'),
     ],
     hiddenimports=[
         'pygame'
