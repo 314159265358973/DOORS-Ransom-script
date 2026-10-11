@@ -1,4 +1,6 @@
 import pygame
+import pygetwindow as gw
+import random
 import sys
 import os
 
@@ -13,9 +15,16 @@ def resource_path(relative_path):
 pygame.init()
 screen = pygame.display.set_mode((100, 100))
 pygame.display.set_caption("RANSOM")
+window = gw.getWindowsWithTitle("RANSOM")[0]
 pygame.display.set_icon(
     pygame.image.load(resource_path("icon.webp"))
 )
+
+# Ransom theme
+pygame.mixer.init()
+
+pygame.mixer.music.load(resource_path("Ransom theme.wav"))
+pygame.mixer.music.play(loops=-1)
 
 clock = pygame.time.Clock()
 
@@ -27,6 +36,7 @@ font.set_bold(True)
 ransom_image = pygame.image.load(resource_path("Ransom.png")).convert()
 size_x, size_y = ransom_image.get_size()
 screen = pygame.display.set_mode((size_x / 6, size_y / 6))
+sw, sh = pygame.display.get_desktop_sizes()[0]
 
 caption = 0
 
@@ -41,12 +51,15 @@ while running:
         if event.type == pygame.QUIT:
             if caption == 0:
                 pygame.display.set_caption("PAY NOW OR ELSE")
+                window = gw.getWindowsWithTitle("PAY NOW OR ELSE")[0]
                 caption += 1
             elif caption == 1:
                 pygame.display.set_caption("I SAID PAY")
+                window = gw.getWindowsWithTitle("I SAID PAY")[0]
                 caption += 1
             elif caption == 2:
                 pygame.display.set_caption("YOUR FILES WILL DISAPPEAR")
+                window = gw.getWindowsWithTitle("YOUR FILES WILL DISAPPEAR")[0]
                 caption += 1
             else:
                 running = False
@@ -100,6 +113,12 @@ while running:
     )
 
     screen.blit(timer_text, timer_rect)
+
+    # Move the window
+    if random.randint(0, 300) == 0:
+        x = random.randint(0, sw - window_width)
+        y = random.randint(0, sh - window_height)
+        window.moveTo(x, y)
 
     pygame.display.flip()
     clock.tick(60)
