@@ -37,5 +37,3 @@ To make all of this easier for yourself I highly recommend opening a terminal wi
 ## Credits
 
 **Made by Pandiwuwen**
-
-Feel free to delete this file.
