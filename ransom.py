@@ -44,6 +44,11 @@ caption = 0
 time_left = 90
 start_ticks = pygame.time.get_ticks()
 
+def move_window(_window):
+    x = random.randint(0, sw - window_width)
+    y = random.randint(0, sh - window_height)
+    _window.moveTo(x, y)
+
 running = True
 
 while running:
@@ -52,14 +57,17 @@ while running:
             if caption == 0:
                 pygame.display.set_caption("PAY NOW OR ELSE")
                 window = gw.getWindowsWithTitle("PAY NOW OR ELSE")[0]
+                move_window(window)
                 caption += 1
             elif caption == 1:
                 pygame.display.set_caption("I SAID PAY")
                 window = gw.getWindowsWithTitle("I SAID PAY")[0]
+                move_window(window)
                 caption += 1
             elif caption == 2:
                 pygame.display.set_caption("YOUR FILES WILL DISAPPEAR")
                 window = gw.getWindowsWithTitle("YOUR FILES WILL DISAPPEAR")[0]
+                move_window(window)
                 caption += 1
             else:
                 running = False
@@ -116,9 +124,7 @@ while running:
 
     # Move the window
     if random.randint(0, 300) == 0:
-        x = random.randint(0, sw - window_width)
-        y = random.randint(0, sh - window_height)
-        window.moveTo(x, y)
+        move_window(window)
 
     pygame.display.flip()
     clock.tick(60)
