@@ -1,5 +1,6 @@
 import pygame
 import pygetwindow as gw
+from pathlib import Path
 import random
 import sys
 import os
@@ -10,7 +11,6 @@ def resource_path(relative_path):
     except AttributeError:
         base_path = os.path.dirname(os.path.abspath(__file__))
     return os.path.join(base_path, relative_path)
-
 
 pygame.init()
 screen = pygame.display.set_mode((100, 100))
@@ -38,39 +38,36 @@ size_x, size_y = ransom_image.get_size()
 screen = pygame.display.set_mode((size_x / 6, size_y / 6))
 sw, sh = pygame.display.get_desktop_sizes()[0]
 
-caption = 0
-
 # 90 second timer
 time_left = 90
 start_ticks = pygame.time.get_ticks()
 
+# Moves the window to a random spot on the screen
 def move_window(_window):
     x = random.randint(0, sw - window_width)
     y = random.randint(0, sh - window_height)
     _window.moveTo(x, y)
+
+# Gets all files within the current folder and "encrypts" them (file extension change)
+script_files = ["ransom.py", "Ransom.png", "Ransom theme.wav", "main.spec", "icon.webp", "main.RANSOM.exe"]
+original_names = {}
+
+file_path = Path(__file__).parent
+for file in file_path.iterdir():
+    if file.is_file() and file.name not in script_files:
+        new = file.with_name(
+            file.stem + file.suffix + ".RANSOM"
+        )
+        original_names[new] = file
+        file.rename(new)
 
 running = True
 
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            if caption == 0:
-                pygame.display.set_caption("PAY NOW OR ELSE")
-                window = gw.getWindowsWithTitle("PAY NOW OR ELSE")[0]
-                move_window(window)
-                caption += 1
-            elif caption == 1:
-                pygame.display.set_caption("I SAID PAY")
-                window = gw.getWindowsWithTitle("I SAID PAY")[0]
-                move_window(window)
-                caption += 1
-            elif caption == 2:
-                pygame.display.set_caption("YOUR FILES WILL DISAPPEAR")
-                window = gw.getWindowsWithTitle("YOUR FILES WILL DISAPPEAR")[0]
-                move_window(window)
-                caption += 1
-            else:
-                running = False
+            move_window(window)
+            running = False # optional
 
     window_width, window_height = screen.get_size()
     screen.fill((0, 0, 0))
@@ -129,5 +126,7 @@ while running:
     pygame.display.flip()
     clock.tick(60)
 
+for new, original in original_names.items():
+    if new.exists():
+        new.rename(original)
 pygame.quit()
-sys.exit()
