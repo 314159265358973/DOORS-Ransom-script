@@ -71,7 +71,8 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             move_window(window)
-            #running = False # optional
+            if random.randint(0, 9) == 0:
+                running = False
 
     window_width, window_height = screen.get_size()
     screen.fill((0, 0, 0))
